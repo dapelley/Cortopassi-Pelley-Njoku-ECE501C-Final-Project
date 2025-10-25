@@ -1,39 +1,62 @@
-### How to Run Locally
+# Restaurant Order Recommender System
 
-1. **Place `historical_data.csv` and these files** in the same folder.
+This project analyzes DoorDash-style historical delivery data to recommend restaurants based on performance metrics such as delivery speed, order value, and popularity.
 
-2. Run:
+---
 
-   python load_data.py
-   This creates and populates restaurant_order_recommender.db.
+## How to Run Locally
 
-3. Check database health:
-    
-    python evaluate_db.py
+1. Place `historical_data.csv` and these project files in the same folder.
 
-4. Explore queries:
-    
-    sqlite3 restaurant_order_recommender.db < analysis_queries.sql
+2. **Create and populate the database:**
+python load_data.py
 
-5. Run recommendations:
-    
-    python recommend.py
+This will create and populate `restaurant_order_recommender.db`.
 
-    Insights You’ll Get
-    
-        analysis_queries.sql
+3. **Check database health:**
+python evaluate_db.py
 
-    A. Top restaurants by average order value
+4. **Explore SQL queries:**
+sqlite3 restaurant_order_recommender.db < analysis_queries.sql
 
-    B. Fastest restaurants by average delivery time
+5. **Run recommendations:**
+python recommend.py
 
-    C. Average dasher load per market (proxy for region congestion)
+---
 
-    D. Dashers vs. delivery-time correlation
+## Insights You’ll Get
 
-    recommend.py
+### From `analysis_queries.sql`
+- **Top restaurants by average order value**  
+- **Fastest restaurants by average delivery time**  
+- **Average dasher load per market** (proxy for region congestion)  
+- **Correlation between dashers and delivery time**
 
-        A. top_value() — finds high-value restaurants
+### From `recommend.py`
+- `top_value()` — finds high-value restaurants  
+- `top_fastest()` — finds fast delivery performers  
 
-        B. top_fastest() — finds fast delivery performers
+---
 
+## Streamlit Interface
+
+You can run an interactive Streamlit application to explore recommendations visually.
+
+**Run the app:**
+streamlit run streamlit_app.py
+
+
+**In the app, users can:**
+- Select cuisine type and market  
+- Choose preferences such as *Fast Delivery*, *High Value*, or *Most Popular*  
+- View data-driven restaurant recommendations dynamically  
+
+---
+
+## Future Enhancements
+
+- Add indexing analysis to evaluate database performance and optimize query execution time.  
+- Implement error analysis to detect data inconsistencies (e.g., missing delivery times or invalid subtotals) and assess recommendation accuracy.  
+- Introduce query performance tracking to measure improvements before and after indexing.  
+- Visualize performance and error metrics using Streamlit dashboards.  
+- Incorporate user feedback and satisfaction tracking to validate recommendation effectiveness.  
